@@ -36,6 +36,10 @@ const getProviderAuthPayload = (provider: string) => {
       return { apiKey: modelProviderSelectors.zhipuAPIKey(useGlobalStore.getState()) };
     }
 
+    case ModelProvider.Moonshot: {
+      return { apiKey: modelProviderSelectors.moonshotAPIKey(useGlobalStore.getState()) };
+    }
+
     case ModelProvider.Google: {
       return { apiKey: modelProviderSelectors.googleAPIKey(useGlobalStore.getState()) };
     }

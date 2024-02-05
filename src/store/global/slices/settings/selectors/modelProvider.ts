@@ -4,6 +4,7 @@ import {
   BedrockProvider,
   GoogleProvider,
   LOBE_DEFAULT_MODEL_LIST,
+  MoonshotProvider,
   OpenAIProvider,
   ZhiPuProvider,
 } from '@/config/modelProviders';
@@ -32,6 +33,9 @@ const googleProxyUrl = (s: GlobalStore) => modelProvider(s).google.endpoint;
 
 const enableAzure = (s: GlobalStore) => modelProvider(s).openAI.useAzure;
 const azureConfig = (s: GlobalStore) => modelProvider(s).azure;
+
+const enableMoonshot = (s: GlobalStore) => modelProvider(s).moonshot.enabled;
+const moonshotAPIKey = (s: GlobalStore) => modelProvider(s).moonshot.apiKey;
 
 // const azureModelList = (s: GlobalStore): ModelProviderCard => {
 //   const azure = azureConfig(s);
@@ -103,6 +107,7 @@ const modelSelectList = (s: GlobalStore): ModelProviderCard[] => {
     },
     // { ...azureModelList(s), enabled: enableAzure(s) },
     { ...ZhiPuProvider, enabled: enableZhipu(s) },
+    { ...MoonshotProvider, enabled: enableMoonshot(s) },
     { ...GoogleProvider, enabled: enableGoogle(s) },
     { ...BedrockProvider, enabled: enableBedrock(s) },
   ];
@@ -163,4 +168,8 @@ export const modelProviderSelectors = {
   // Bedrock
   enableBedrock,
   bedrockConfig,
+
+  // Moonshot
+  enableMoonshot,
+  moonshotAPIKey,
 };
