@@ -3,12 +3,16 @@ name: Issue Close Require
 on:
   schedule:
     - cron: '0 0 * * *'
+  push:
+    branches-ignore:
+      - main
 
 permissions:
   contents: read
 
 jobs:
   issue-check-inactive:
+    if: github.ref != 'refs/heads/main'
     permissions:
       issues: write # for actions-cool/issues-helper to update issues
       pull-requests: write # for actions-cool/issues-helper to update PRs
